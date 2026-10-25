@@ -379,3 +379,17 @@ details p {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  margin-top: auto;
+  font-size: 14px;
+}
+
+.card-links .card-link {
+  margin-top: 0;
+  font-size: 16px;
+}

@@ -69,6 +69,45 @@ function templatePage(m) {
 `;
 }
 
+const AUTH_PAGES = {
+  signup: { label: "Sign Up", what: "a trader registration form" },
+  signin: { label: "Sign In", what: "a trader login form" },
+};
+
+function authPage(m, page) {
+  const { label, what } = AUTH_PAGES[page];
+  const title = `${m.name} Prop Firm ${label} Page Template (Free) | PropSim`;
+  const url = `${SITE}/templates/${m.id}/${page}/`;
+  const description = `Free prop firm ${label.toLowerCase()} page template in the ${m.name} design: ${what} framed like the ${m.name} landing page. React and Tailwind CSS, MIT licensed.`;
+  return `<!doctype html>
+<html lang="en" data-template="${m.id}" data-page="${page}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${esc(title)}</title>
+    <meta name="description" content="${esc(description)}" />
+    <link rel="canonical" href="${url}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="${esc(title)}" />
+    <meta property="og:description" content="${esc(description)}" />
+    <meta property="og:url" content="${url}" />
+    <meta property="og:image" content="${SITE}/og/${m.id}-${page}.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>
+      <h1>${esc(m.name)}: a free prop firm ${label.toLowerCase()} page template</h1>
+      <p>${esc(description)}</p>
+      <p><a href="../../../">See all free prop firm templates</a></p>
+    </noscript>
+    <script type="module" src="../../../site/auth.tsx"></script>
+  </body>
+</html>
+`;
+}
+
 function card(m) {
   const dots = m.swatch.map((c) => `<i style="background:${c}"></i>`).join("");
   const tags = m.tags.map((t) => `<li>${t}</li>`).join("");
@@ -78,13 +117,16 @@ function card(m) {
             <div class="card-head"><h3><a href="templates/${m.id}/">${esc(m.name)}</a></h3><span class="swatch" aria-hidden="true">${dots}</span></div>
             <p>${esc(m.description)}</p>
             <ul class="tags">${tags}</ul>
-            <a class="card-link" href="templates/${m.id}/">Live demo <span aria-hidden="true">→</span></a>
+            <div class="card-links"><a class="card-link" href="templates/${m.id}/">Live demo <span aria-hidden="true">→</span></a><a href="templates/${m.id}/signup/">Sign-up page</a><a href="templates/${m.id}/signin/">Sign-in page</a></div>
           </div>
         </article>`;
 }
 
 function sitemap(manifests) {
-  const urls = ["", ...manifests.map((m) => `templates/${m.id}/`)]
+  const pages = manifests.flatMap((m) =>
+    ["", ...Object.keys(AUTH_PAGES).map((p) => `${p}/`)].map((p) => `templates/${m.id}/${p}`),
+  );
+  const urls = ["", ...pages]
     .map((p) => `  <url><loc>${SITE}/${p}</loc></url>`)
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -95,6 +137,10 @@ for (const m of manifests) {
   const dir = path.join(ROOT, "templates", m.id);
   mkdirSync(dir, { recursive: true });
   writeFileSync(path.join(dir, "index.html"), templatePage(m));
+  for (const page of Object.keys(AUTH_PAGES)) {
+    mkdirSync(path.join(dir, page), { recursive: true });
+    writeFileSync(path.join(dir, page, "index.html"), authPage(m, page));
+  }
 }
 
 const indexPath = path.join(ROOT, "index.html");
@@ -104,4 +150,6 @@ const index = readFileSync(indexPath, "utf8").replace(
 );
 writeFileSync(indexPath, index);
 writeFileSync(path.join(ROOT, "public/sitemap.xml"), sitemap(manifests));
-console.log(`Wrote ${manifests.length} template pages, the gallery cards and sitemap.xml.`);
+console.log(
+  `Wrote ${manifests.length} templates (landing, sign-up and sign-in pages), the gallery cards and sitemap.xml.`,
+);
