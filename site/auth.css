@@ -1,0 +1,108 @@
+/*
+ * The sign-up and sign-in form. It takes its text colour from the template's
+ * frame (light on dark templates, dark on light ones) and its button colour
+ * from the template's accent (--af-accent), so one form fits every design.
+ */
+.af-scroll {
+  height: 100%;
+}
+
+.af-form {
+  display: grid;
+  gap: 14px;
+  font: inherit;
+}
+
+.af-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.af-field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.af-field input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+}
+
+.af-field input:focus {
+  border-color: var(--af-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--af-accent) 28%, transparent);
+}
+
+.af-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.af-check input {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  flex-shrink: 0;
+  accent-color: var(--af-accent);
+}
+
+.af-check a,
+.af-forgot {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.af-forgot {
+  justify-self: start;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.af-chosen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 4px;
+  padding: 12px 14px;
+  border: 1px dashed color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.af-submit {
+  height: 48px;
+  margin-top: 4px;
+  border-radius: 10px;
+  background: var(--af-accent) !important;
+  color: var(--af-accent-ink) !important;
+  font-size: 16px !important;
+  font-weight: 650 !important;
+}
+
+@media (hover: hover) {
+  .af-submit:hover {
+    filter: brightness(1.08);
+  }
+}
+
+@media (max-width: 420px) {
+  .af-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

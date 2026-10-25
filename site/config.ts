@@ -149,14 +149,32 @@ export const STOREFRONT: StorefrontConfig = {
   },
 };
 
-/* ── 5. Where the buttons go ──────────────────────────────────────────── */
+/* ── 5. Sign-up and sign-in pages ─────────────────────────────────────── */
+
+/**
+ * Each template also has a sign-up page (templates/<id>/signup/) and a
+ * sign-in page (templates/<id>/signin/). Their forms POST to these addresses:
+ * point them at your own backend. Fields: firstName, lastName, email,
+ * password, country, terms and product (the challenge picked on the landing page).
+ */
+export const AUTH = {
+  signupAction: "https://your-backend.example.com/signup",
+  signinAction: "https://your-backend.example.com/signin",
+  forgotPasswordUrl: "https://your-backend.example.com/forgot-password",
+};
+
+/* ── 6. Where the buttons go ──────────────────────────────────────────── */
 
 export const LINKS = {
-  /** "Start challenge" buttons. productId is the id from PRODUCTS above. */
+  /**
+   * "Start challenge" buttons. productId is the id from PRODUCTS above. The
+   * default goes to this template's own sign-up page; use your checkout instead
+   * if you have one, e.g. `https://checkout.yourfirm.com/?product=${productId}`.
+   */
   register: (productId?: string) =>
-    `https://your-checkout.example.com/${productId ? `?product=${productId}` : ""}`,
-  /** "Sign in" in the menu. */
-  login: "https://your-dashboard.example.com/login",
+    `signup/${productId ? `?product=${encodeURIComponent(productId)}` : ""}`,
+  /** "Sign in" in the menu: this template's sign-in page, or your dashboard. */
+  login: "signin/",
   /** Footer legal pages, by slug. */
   legal: {
     "terms-of-service": "/terms.html",
