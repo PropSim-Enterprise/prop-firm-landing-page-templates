@@ -1,0 +1,94 @@
+/*
+ * Volt: near-black, off-white, electric lime. Archivo with its width axis:
+ * condensed (72%) for display, normal width for reading.
+ */
+.sf-volt {
+  --sf-bg: #0b0b0c;
+  --sf-fg: #f4f4f0;
+  --sf-line: rgba(244, 244, 240, 0.14);
+  --sf-focus: #d7ff3d;
+  font-family:
+    "Archivo Variable", Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
+  font-stretch: 100%;
+  color-scheme: dark;
+}
+.sf-volt ::selection {
+  background: #d7ff3d;
+  color: #0b0b0c;
+}
+.volt-display {
+  font-stretch: 72%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.88;
+}
+.volt-num {
+  font-variant-numeric: tabular-nums;
+}
+.volt-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(244, 244, 240, 0.32);
+}
+/* A highlighter stroke behind a phrase, carried across line breaks. */
+.volt-mark {
+  background: #d7ff3d;
+  color: #0b0b0c;
+  padding: 0 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.volt-scrollbar-none {
+  scrollbar-width: none;
+}
+.volt-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.volt-grain {
+  background:
+    radial-gradient(45% 50% at 85% 15%, rgba(215, 255, 61, 0.12), transparent 70%),
+    repeating-linear-gradient(-45deg, rgba(244, 244, 240, 0.025) 0 1px, transparent 1px 14px);
+}
+
+/* The rotating split badge. */
+.volt-spin {
+  animation: volt-spin 18s linear infinite;
+}
+@keyframes volt-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*
+ * Marquee: a duplicated track sliding by half its width, edges faded, paused
+ * on hover or focus. Pattern after the "Marquee" component on 21st.dev
+ * (kevingirelli).
+ */
+.volt-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.volt-marquee-track {
+  animation: volt-marquee 38s linear infinite;
+}
+.volt-marquee:hover .volt-marquee-track,
+.volt-marquee:focus-within .volt-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes volt-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .volt-marquee-track,
+  .volt-spin {
+    animation: none;
+  }
+}
+
+.volt-faq[open] .volt-faq-icon {
+  transform: rotate(45deg);
+}

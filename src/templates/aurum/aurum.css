@@ -1,0 +1,52 @@
+/* Aurum: black, warm ivory text, champagne gold. Cormorant Garamond over Inter. */
+.sf-aurum {
+  --sf-bg: #0a0908;
+  --sf-fg: #f2ece0;
+  --sf-line: rgba(200, 169, 106, 0.22);
+  --sf-focus: #c8a96a;
+  font-family:
+    "Inter Variable", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+.sf-aurum ::selection {
+  background: rgba(200, 169, 106, 0.3);
+}
+.aurum-serif {
+  font-family:
+    "Cormorant Garamond Variable", "Cormorant Garamond", Garamond, "Times New Roman", serif;
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+}
+.aurum-num {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.aurum-caps {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+.aurum-gold {
+  background: linear-gradient(180deg, #e9d3a1 0%, #c8a96a 55%, #9c7c41 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.aurum-glow {
+  background:
+    radial-gradient(55% 45% at 50% 0%, rgba(200, 169, 106, 0.16), transparent 70%),
+    radial-gradient(35% 30% at 50% 100%, rgba(200, 169, 106, 0.06), transparent 70%);
+}
+.aurum-snap {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.aurum-snap::-webkit-scrollbar {
+  display: none;
+}
+.aurum-snap > * {
+  scroll-snap-align: start;
+}
+.aurum-faq[open] .aurum-faq-icon {
+  transform: rotate(45deg);
+}

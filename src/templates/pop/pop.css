@@ -1,0 +1,46 @@
+/* Pop: cream, ink black, yellow / pink / blue. Space Grotesk throughout. */
+.sf-pop {
+  --sf-bg: #fff6e5;
+  --sf-fg: #111111;
+  --sf-line: #111111;
+  --sf-focus: #ff5c8a;
+  font-family:
+    "Space Grotesk Variable", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  color-scheme: light;
+}
+.sf-pop ::selection {
+  background: #ffd23f;
+}
+.pop-dots {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.12) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+.pop-press {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pop-press:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 #111;
+  }
+}
+.pop-press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #111;
+}
+.pop-scrollbar-none {
+  scrollbar-width: none;
+}
+.pop-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.pop-faq[open] {
+  background: #ffd23f;
+}
+.pop-faq[open] .pop-faq-icon {
+  transform: rotate(45deg);
+}

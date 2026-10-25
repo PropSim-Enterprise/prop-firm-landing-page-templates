@@ -1,0 +1,115 @@
+/*
+ * Storefront templates' styles. Import once from each page:
+ *   import "./src/styles.css";
+ * The host app's PostCSS compiles this with the package's own Tailwind config
+ * (below), so app themes never reach into a template.
+ */
+@config "../tailwind.config.js";
+@tailwind base;
+@tailwind utilities;
+
+.sf-root {
+  container: sf / inline-size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  color: var(--sf-fg);
+  background: var(--sf-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  --sf-vh: 100dvh;
+}
+
+/*
+ * Undo the host apps' global element rules inside a storefront. Zero-specificity
+ * (:where) so a host form placed inside a template frame keeps its own classes,
+ * while template utilities (.sf-root .x) still win everywhere.
+ */
+:where(.sf-root) *,
+:where(.sf-root) ::before,
+:where(.sf-root) ::after {
+  border-color: var(--sf-line, rgba(127, 127, 127, 0.2));
+  box-sizing: border-box;
+}
+:where(.sf-root) a {
+  color: inherit;
+  text-decoration: none;
+}
+:where(.sf-root) a,
+:where(.sf-root) button {
+  min-height: 0;
+}
+:where(.sf-root) button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+:where(.sf-root) th,
+:where(.sf-root) td {
+  padding: 0;
+  border-bottom-width: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  text-align: left;
+}
+/* Fieldsets default to min-content width, so a scrolling chip row would widen its card. */
+:where(.sf-root) fieldset {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+:where(.sf-root) img {
+  max-width: 100%;
+}
+:where(.sf-root) summary {
+  list-style: none;
+}
+:where(.sf-root) summary::-webkit-details-marker {
+  display: none;
+}
+:where(.sf-root) :focus-visible {
+  outline: 2px solid var(--sf-focus, currentColor);
+  outline-offset: 2px;
+}
+
+/* Reveal on scroll: only once JS has confirmed it can reveal (data-sf-motion). */
+.sf-root[data-sf-motion] .sf-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.sf-root[data-sf-motion] .sf-reveal[data-sf-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-root[data-sf-motion] .sf-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .sf-root *,
+  .sf-root ::before,
+  .sf-root ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
