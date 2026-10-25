@@ -140,4 +140,6 @@ Issues and pull requests are welcome: new templates, fixes and translations. Ple
 
 ---
 
+**More free tools from PropSim:** [prop firm calculators](https://github.com/PropSim-Enterprise/prop-firm-calculators) · [prop firm pass rates dataset](https://github.com/PropSim-Enterprise/prop-firm-pass-rates) · [prop-firm-rules (TypeScript)](https://github.com/PropSim-Enterprise/prop-firm-rules) · [TradingView risk panel](https://github.com/PropSim-Enterprise/prop-firm-tradingview-indicator) · [awesome prop firms](https://github.com/PropSim-Enterprise/awesome-prop-firms)
+
 Made by [PropSim](https://propsim.markets/?utm_source=github&utm_medium=readme&utm_campaign=prop-firm-landing-page-templates): white-label prop firm software with a challenge engine, trader terminal, risk management and payouts. Keywords: prop firm website template, prop firm landing page, prop trading firm website, funded trader program, trading challenge page, evaluation account pricing, React, Tailwind CSS.
