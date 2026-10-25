@@ -1,0 +1,48 @@
+/* Quant: graphite panels, cool grey text, amber accent, green for gains. JetBrains Mono throughout. */
+.sf-quant {
+  --sf-bg: #0c0f14;
+  --sf-fg: #d6dde6;
+  --sf-line: #1e2630;
+  --sf-focus: #ffb000;
+  font-family:
+    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  color-scheme: dark;
+}
+.sf-quant ::selection {
+  background: rgba(255, 176, 0, 0.3);
+}
+.quant-scanlines {
+  background-image:
+    linear-gradient(to right, rgba(214, 221, 230, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(214, 221, 230, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.quant-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  margin-left: 0.15em;
+  vertical-align: -0.12em;
+  background: #ffb000;
+  animation: quant-blink 1.1s steps(1) infinite;
+}
+@keyframes quant-blink {
+  50% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quant-cursor {
+    animation: none;
+  }
+}
+.quant-scrollbar-none {
+  scrollbar-width: none;
+}
+.quant-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.quant-faq[open] .quant-faq-icon {
+  transform: rotate(90deg);
+}

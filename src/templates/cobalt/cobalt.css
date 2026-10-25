@@ -1,0 +1,37 @@
+/* Cobalt: white and cool grey, navy ink, one strong blue. Plus Jakarta Sans. */
+.sf-cobalt {
+  --sf-bg: #f5f7fb;
+  --sf-fg: #0b1533;
+  --sf-line: rgba(11, 21, 51, 0.1);
+  --sf-focus: #2547f4;
+  font-family:
+    "Plus Jakarta Sans Variable", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+.sf-cobalt ::selection {
+  background: rgba(37, 71, 244, 0.18);
+}
+.cobalt-num {
+  font-variant-numeric: tabular-nums;
+}
+.cobalt-scrollbar-none {
+  scrollbar-width: none;
+}
+.cobalt-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.cobalt-sky {
+  background:
+    radial-gradient(60% 60% at 80% 0%, rgba(37, 71, 244, 0.16), transparent 70%),
+    radial-gradient(45% 45% at 5% 20%, rgba(94, 200, 255, 0.16), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+.cobalt-blue-panel {
+  background:
+    radial-gradient(70% 90% at 100% 0%, rgba(126, 162, 255, 0.55), transparent 60%),
+    radial-gradient(60% 80% at 0% 100%, rgba(10, 31, 140, 0.6), transparent 60%), #2547f4;
+}
+.cobalt-faq[open] .cobalt-faq-icon {
+  transform: rotate(180deg);
+}
